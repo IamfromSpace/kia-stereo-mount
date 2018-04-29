@@ -5,6 +5,7 @@
 module mount(
   thickness, // How thick the walls should be
   clearance, // How much room should be around the screw holes/slots
+  tolerance, // Room for error
   slot_depth, // How deep the slots should protrude
   slot_height, // Height of the slots (distance oriented from bottom to top of the car)
   front_slot_width, // Width of the slot closest to the driver (distance oriented from front to back of the car)
@@ -33,12 +34,12 @@ module mount(
     cube([thickness, back_wing_length, height]);
 
   // Front slot
-  translate([0, d_slot_front_to_inner_bend, -slot_height/2])
-    cube([slot_depth, front_slot_width, slot_height]);
+  translate([0, d_slot_front_to_inner_bend + tolerance/2, -(slot_height - tolerance)/2])
+    cube([slot_depth, front_slot_width - tolerance, slot_height - tolerance]);
 
   // Back slot
-  translate([0, back_slot_offset, -slot_height/2])
-    cube([slot_depth, back_slot_width, slot_height]);
+  translate([0, back_slot_offset + tolerance/2, -(slot_height - tolerance)/2])
+    cube([slot_depth, back_slot_width - tolerance, slot_height - tolerance]);
 
   // Front wing (with holes)
   difference() {
@@ -48,23 +49,24 @@ module mount(
     // Top screw hole
     translate([-screw_offset_width, thickness/2, screw_offset_height])
       rotate([90, 0, 0])
-      cylinder(thickness*2, screw_radius, screw_radius);
+      cylinder(thickness*2, screw_radius + tolerance/2, screw_radius + tolerance/2);
 
     // center pin hole
     translate([-screw_offset_width, thickness/2, 0])
       rotate([90, 0, 0])
-      cylinder(thickness*2, pin_radius, pin_radius);
+      cylinder(thickness*2, pin_radius + tolerance/2, pin_radius + tolerance/2);
 
     // Bottom screw hole
     translate([-screw_offset_width, thickness/2, -screw_offset_height])
       rotate([90, 0, 0])
-      cylinder(thickness*2, screw_radius, screw_radius);
+      cylinder(thickness*2, screw_radius + tolerance/2, screw_radius + tolerance/2);
   }
 }
 
 mount(
   4, // thickness
   6, // clearance
+  0.3, // tolerance
   6, // slot_depth
   15, // slot_height
   8, // front_slot_width

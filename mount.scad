@@ -68,13 +68,14 @@ mount(
   6, // clearance
   0.3, // tolerance
   6, // slot_depth
-  15, // slot_height
-  8, // front_slot_width
-  12, // back_slot_width
-  10, // d_slot_to_slot
-  20, // d_slot_front_to_inner_bend
-  20, // screw_offset_width
-  10, // screw_offset_height
-  2.5, // screw_radius
-  1.5 // pin_radius
+  9, // slot_height
+  5.4, // front_slot_width
+  6.4, // back_slot_width
+  7, // d_slot_to_slot
+  11.5, // d_slot_front_to_inner_bend
+  15, // screw_offset_width
+  9.8, // screw_offset_height
+  2.9, // screw_radius
+  2.9, // pin_radius
+  $fn=30
 );

@@ -64,10 +64,10 @@ module mount(
 }
 
 mount(
-  4, // thickness
-  6, // clearance
+  3, // thickness
+  4, // clearance
   0.3, // tolerance
-  6, // slot_depth
+  5, // slot_depth
   9, // slot_height
   5.4, // front_slot_width
   6.4, // back_slot_width
